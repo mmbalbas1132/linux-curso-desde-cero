@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta SEO recomendadas -->
+    <title>Curso Completo de Linux desde Cero | mmbalbas1132</title>
+    <meta name="description" content="Curso completo de Linux desde cero: instalación, comandos, administración, redes y scripting. Material práctico con ejercicios y ejemplos. Instructor: mmbalbas1132.">
+    <meta name="author" content="mmbalbas1132">
+    <meta name="keywords" content="Linux, Curso Linux, Ubuntu, Terminal, Scripting, Administración de sistemas, Seguridad, mmbalbas1132">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://github.com/mmbalbas1132/linux-curso-desde-cero">
+    <link rel="alternate" hreflang="es" href="https://github.com/mmbalbas1132/linux-curso-desde-cero">
+
+    <!-- Open Graph (mejora compartido en redes) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Curso Completo de Linux desde Cero | mmbalbas1132">
+    <meta property="og:description" content="Curso práctico de Linux: instalación, comandos, administración, redes y scripting. Aprende con ejemplos reales y ejercicios.">
+    <meta property="og:url" content="https://github.com/mmbalbas1132/linux-curso-desde-cero">
+    <meta property="og:site_name" content="Linux desde Cero">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image" content="https://raw.githubusercontent.com/mmbalbas1132/linux-curso-desde-cero/master/preview.png">
+
+    <!-- Twitter Card -->
+    <!-- <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@mmbalbas1132">
+    <meta name="twitter:title" content="Curso Completo de Linux desde Cero | mmbalbas1132">
+    <meta name="twitter:description" content="Curso práctico de Linux: instalación, comandos, administración, redes y scripting.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/mmbalbas1132/linux-curso-desde-cero/master/preview.png"> -->
+
+    <!-- JSON-LD (estructura de datos) -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Course",
+            "name": "Curso Completo de Linux desde Cero",
+            "description": "Curso práctico de Linux: instalación, comandos, administración, redes y scripting. Material con ejercicios y ejemplos.",
+            "provider": {
+                "@type": "Person",
+                "name": "mmbalbas1132",
+                "sameAs": "https://github.com/mmbalbas1132"
+            },
+            "url": "https://github.com/mmbalbas1132/linux-curso-desde-cero",
+            "inLanguage": "es"
+        }
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fab fa-linux"></i>
+            <h1>Linux desde Cero</h1>
+        </div>
+        <nav class="navbar">
+            <a href="#inicio" class="active"><i class="fas fa-home"></i> Inicio</a>
+            <a href="#modulos"><i class="fas fa-book"></i> Módulos</a>
+            <a href="#recursos"><i class="fas fa-tools"></i> Recursos</a>
+            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h2>Domina Linux desde Cero</h2>
+            <p>Aprende Linux paso a paso con este curso completo. Desde la instalación hasta scripting avanzado, todo lo que necesitas para convertirte en un experto en Linux.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <i class="fas fa-play-circle"></i>
+                    <span>5 Módulos Completos</span>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-clock"></i>
+                    <span>4+ Horas de Contenido</span>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-terminal"></i>
+                    <span>200+ Comandos Prácticos</span>
+                </div>
+            </div>
+            <a href="#modulos" class="btn-primary">Comenzar Curso <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="hero-image">
+            <div class="terminal-preview">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <span class="terminal-title">terminal@linux:~</span>
+                </div>
+                <div class="terminal-body">
+                    <p><span class="prompt">$</span> ls -la</p>
+                    <p>drwxr-xr-x  12 user group   4096 Nov 15 10:30 .</p>
+                    <p>drwxr-xr-x   3 root root    4096 Nov 10 09:15 ..</p>
+                    <p>-rw-r--r--   1 user group   3120 Nov 14 16:22 .bashrc</p>
+                    <p><span class="prompt">$</span> <span class="cursor">|</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Grid -->
+    <section class="modules" id="modulos">
+        <h2 class="section-title"><i class="fas fa-layer-group"></i> Módulos del Curso</h2>
+        <div class="modules-grid">
+            <!-- Module 1 -->
+            <div class="module-card">
+                <div class="module-icon">
+                    <i class="fas fa-laptop-code"></i>
+                    <span class="module-number">01</span>
+                </div>
+                <h3>Introducción a Linux</h3>
+                <p>Conceptos básicos, instalación de Ubuntu, primeros pasos en terminal y entorno gráfico.</p>
+                <ul class="module-topics">
+                    <li><i class="fas fa-check"></i> ¿Qué es Linux realmente?</li>
+                    <li><i class="fas fa-check"></i> Instalación paso a paso</li>
+                    <li><i class="fas fa-check"></i> Entornos de escritorio</li>
+                    <li><i class="fas fa-check"></i> Primeros comandos</li>
+                </ul>
+                <a href="modulo1.html" class="btn-module">Ver módulo <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <!-- Module 2 -->
+            <div class="module-card">
+                <div class="module-icon">
+                    <i class="fas fa-folder-open"></i>
+                    <span class="module-number">02</span>
+                </div>
+                <h3>Sistema de Archivos</h3>
+                <p>Manejo de archivos, permisos, enlaces, búsqueda y editores de terminal.</p>
+                <ul class="module-topics">
+                    <li><i class="fas fa-check"></i> Archivos y directorios</li>
+                    <li><i class="fas fa-check"></i> Permisos y propiedad</li>
+                    <li><i class="fas fa-check"></i> Enlaces simbólicos</li>
+                    <li><i class="fas fa-check"></i> Búsqueda con find/grep</li>
+                </ul>
+                <a href="modulo2.html" class="btn-module">Ver módulo <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="module-card">
+                <div class="module-icon">
+                    <i class="fas fa-cogs"></i>
+                    <span class="module-number">03</span>
+                </div>
+                <h3>Administración del Sistema</h3>
+                <p>Gestión de usuarios, procesos, servicios, automatización y resolución de problemas.</p>
+                <ul class="module-topics">
+                    <li><i class="fas fa-check"></i> Usuarios y grupos</li>
+                    <li><i class="fas fa-check"></i> Procesos y servicios</li>
+                    <li><i class="fas fa-check"></i> Automatización con Cron</li>
+                    <li><i class="fas fa-check"></i> Gestión de software</li>
+                </ul>
+                <a href="modulo3.html" class="btn-module">Ver módulo <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="module-card">
+                <div class="module-icon">
+                    <i class="fas fa-network-wired"></i>
+                    <span class="module-number">04</span>
+                </div>
+                <h3>Redes y Seguridad</h3>
+                <p>Configuración de red, firewalls, copias de seguridad y fundamentos de seguridad.</p>
+                <ul class="module-topics">
+                    <li><i class="fas fa-check"></i> Configuración de red</li>
+                    <li><i class="fas fa-check"></i> Firewall con UFW/iptables</li>
+                    <li><i class="fas fa-check"></i> Copias de seguridad</li>
+                    <li><i class="fas fa-check"></i> Fundamentos de seguridad</li>
+                </ul>
+                <a href="modulo4.html" class="btn-module">Ver módulo <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <!-- Module 5 -->
+            <div class="module-card">
+                <div class="module-icon">
+                    <i class="fas fa-code"></i>
+                    <span class="module-number">05</span>
+                </div>
+                <h3>Programación y Scripts</h3>
+                <p>Shell scripting, control de flujo, funciones, depuración y buenas prácticas.</p>
+                <ul class="module-topics">
+                    <li><i class="fas fa-check"></i> Introducción a scripts</li>
+                    <li><i class="fas fa-check"></i> Control de flujo</li>
+                    <li><i class="fas fa-check"></i> Funciones y variables</li>
+                    <li><i class="fas fa-check"></i> Scripts avanzados</li>
+                </ul>
+                <a href="modulo5.html" class="btn-module">Ver módulo <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources" id="recursos">
+        <h2 class="section-title"><i class="fas fa-tools"></i> Recursos Adicionales</h2>
+        <div class="resources-grid">
+            <div class="resource-card">
+                <i class="fab fa-ubuntu"></i>
+                <h3>Descargas</h3>
+                <p>Enlaces para descargar Ubuntu, VirtualBox y herramientas esenciales.</p>
+                <a href="https://ubuntu.com/download" target="_blank" class="btn-resource">Ver enlaces</a>
+            </div>
+            <div class="resource-card">
+                <i class="fas fa-book"></i>
+                <h3>Documentación</h3>
+                <p>Manuales oficiales y recursos de aprendizaje adicionales.</p>
+                <a href="https://linuxjourney.com" target="_blank" class="btn-resource">Explorar</a>
+            </div>
+            <div class="resource-card">
+                <i class="fas fa-terminal"></i>
+                <h3>Comandos Cheatsheet</h3>
+                <p>Lista rápida de los comandos más importantes para referencia.</p>
+                <button class="btn-resource" onclick="showCheatsheet()">Ver lista</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cheatsheet Modal -->
+    <div id="cheatsheetModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3><i class="fas fa-terminal"></i> Cheatsheet de Comandos Linux</h3>
+            <div class="cheatsheet-grid">
+                <div class="cheatsheet-category">
+                    <h4>Archivos y Directorios</h4>
+                    <p><code>ls -la</code> Listar archivos detallado</p>
+                    <p><code>cd ~</code> Ir al directorio home</p>
+                    <p><code>cp archivo destino</code> Copiar</p>
+                    <p><code>rm -r directorio</code> Eliminar recursivo</p>
+                </div>
+                <div class="cheatsheet-category">
+                    <h4>Permisos</h4>
+                    <p><code>chmod 755 archivo</code> Cambiar permisos</p>
+                    <p><code>chown user:grupo</code> Cambiar propiedad</p>
+                    <p><code>sudo comando</code> Ejecutar como root</p>
+                </div>
+                <div class="cheatsheet-category">
+                    <h4>Procesos</h4>
+                    <p><code>ps aux</code> Ver todos procesos</p>
+                    <p><code>kill -9 PID</code> Terminar proceso</p>
+                    <p><code>systemctl status</code> Estado servicio</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4><i class="fab fa-linux"></i> Linux desde Cero</h4>
+                <p>Curso completo para aprender Linux desde los fundamentos hasta nivel avanzado.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Módulos</h4>
+                <ul>
+                    <li><a href="modulo1.html">Introducción a Linux</a></li>
+                    <li><a href="modulo2.html">Sistema de Archivos</a></li>
+                    <li><a href="modulo3.html">Administración</a></li>
+                    <li><a href="modulo4.html">Redes y Seguridad</a></li>
+                    <li><a href="modulo5.html">Programación</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="https://ubuntu.com" target="_blank">Ubuntu</a></li>
+                    <li><a href="https://linuxjourney.com" target="_blank">Linux Journey</a></li>
+                    <li><a href="https://kernel.org" target="_blank">Linux Kernel</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Curso Linux desde Cero. Para fines educativos. <a href="https://github.com/mmbalbas1132/linux-curso-desde-cero" target="_blank"><i class="fab fa-github"></i> Ver en GitHub</a></p>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Modal functionality
+    function showCheatsheet() {
+        document.getElementById('cheatsheetModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('cheatsheetModal').style.display = 'none';
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const modal = document.getElementById('cheatsheetModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if(targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if(targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>
