@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: Redes y Seguridad | Curso Linux</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fab fa-linux"></i>
+            <h1>Linux desde Cero</h1>
+        </div>
+        <nav class="navbar">
+            <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="modulo3.html"><i class="fas fa-cogs"></i> Módulo 3</a>
+            <a href="modulo4.html" class="active"><i class="fas fa-network-wired"></i> Módulo 4</a>
+            <a href="modulo5.html"><i class="fas fa-code"></i> Módulo 5</a>
+        </nav>
+    </header>
+
+    <!-- Módulo 4 Content -->
+    <main class="module-content">
+        <div class="module-header">
+            <a href="index.html" class="back-to-index"><i class="fas fa-arrow-left"></i> Volver al índice</a>
+            <h1 class="module-title"><i class="fas fa-network-wired"></i> Módulo 4: Redes y Seguridad</h1>
+            <p class="module-subtitle">Configuración de red, firewalls, copias de seguridad y fundamentos de seguridad</p>
+        </div>
+
+        <!-- Sección 4.1 -->
+        <section class="section" id="configuracion-red">
+            <h3><i class="fas fa-wifi"></i> Configuración de Red</h3>
+
+            <div class="command-box">
+                <code class="comment"># Información de red</code>
+                <code>ip addr show</code>
+                <code class="comment"># Direcciones IP (moderno)</code>
+
+                <code>ifconfig</code>
+                <code class="comment"># Direcciones IP (obsoleto pero común)</code>
+
+                <code>ip route show</code>
+                <code class="comment"># Tabla de rutas</code>
+
+                <code>hostname -I</code>
+                <code class="comment"># IP del sistema</code>
+
+                <br><code class="comment"># Configuración manual temporal</code>
+                <code>sudo ip addr add 192.168.1.100/24 dev eth0</code>
+                <code class="comment"># Asignar IP</code>
+
+                <code>sudo ip route add default via 192.168.1.1</code>
+                <code class="comment"># Establecer puerta de enlace</code>
+
+                <code>sudo ip link set eth0 up</code>
+                <code class="comment"># Activar interfaz</code>
+
+                <code>echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf</code>
+                <code class="comment"># Configurar DNS temporal</code>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Configuración permanente con Netplan (Ubuntu 18.04+):</strong></p>
+                <p>Archivo: <code>/etc/netplan/01-netcfg.yaml</code></p>
+            </div>
+
+            <div class="command-box">
+                <code class="comment"># Ejemplo de configuración Netplan</code>
+                <code>network:</code>
+                <code>  version: 2</code>
+                <code>  ethernets:</code>
+                <code>    eth0:</code>
+                <code>      dhcp4: true</code>
+                <code>      # O IP estática:</code>
+                <code>      # addresses: [192.168.1.100/24]</code>
+                <code>      # gateway4: 192.168.1.1</code>
+                <code>      # nameservers:</code>
+                <code>      #   addresses: [8.8.8.8, 8..4.4]</code>
+            </div>
+        </section>
+
+        <!-- Sección 4.2 -->
+        <section class="section" id="firewall">
+            <h3><i class="fas fa-shield-alt"></i> Firewall con UFW</h3>
+
+            <div class="command-box">
+                <code class="comment"># Instalar UFW (si no está)</code>
+                <code>sudo apt install ufw</code>
+
+                <br><code class="comment"># Comandos básicos</code>
+                <code>sudo ufw enable</code>
+                <code class="comment"># Activar firewall</code>
+
+                <code>sudo ufw disable</code>
+                <code class="comment"># Desactivar firewall</code>
+
+                <code>sudo ufw status</code>
+                <code class="comment"># Ver estado y reglas</code>
+
+                <code>sudo ufw status numbered</code>
+                <code class="comment"># Ver reglas numeradas</code>
+
+                <br><code class="comment"># Configuración por defecto</code>
+                <code>sudo ufw default deny incoming</code>
+                <code class="comment"># Denegar todo tráfico entrante</code>
+
+                <code>sudo ufw default allow outgoing</code>
+                <code class="comment"># Permitir todo tráfico saliente</code>
+
+                <br><code class="comment"># Permitir servicios comunes</code>
+                <code>sudo ufw allow ssh</code>
+                <code class="comment"># Puerto 22</code>
+
+                <code>sudo ufw allow http</code>
+                <code class="comment"># Puerto 80</code>
+
+                <code>sudo ufw allow https</code>
+                <code class="comment"># Puerto 443</code>
+
+                <code>sudo ufw allow 3000/tcp</code>
+                <code class="comment"># Puerto específico</code>
+
+                <br><code class="comment"># Reglas específicas</code>
+                <code>sudo ufw allow from 192.168.1.0/24</code>
+                <code class="comment"># Permitir desde red local</code>
+
+                <code>sudo ufw allow from 192.168.1.10 to any port 22</code>
+                <code class="comment"># SSH solo desde IP específica</code>
+
+                <br><code class="comment"># Eliminar reglas</code>
+                <code>sudo ufw delete allow ssh</code>
+                <code class="comment"># Por nombre</code>
+
+                <code>sudo ufw delete 3</code>
+                <code class="comment"># Por número (status numbered)</code>
+            </div>
+        </section>
+
+        <!-- Sección 4.3 -->
+        <section class="section" id="seguridad">
+            <h3><i class="fas fa-lock"></i> Fundamentos de Seguridad</h3>
+
+            <div class="warning-box">
+                <p><strong>Buenas prácticas de seguridad básicas:</strong></p>
+                <ul>
+                    <li>Mantener el sistema actualizado: <code>sudo apt update && sudo apt upgrade</code></li>
+                    <li>Usar contraseñas fuertes</li>
+                    <li>Configurar SSH seguro</li>
+                    <li>Usar fail2ban para protección contra ataques</li>
+                </ul>
+            </div>
+
+            <div class="command-box">
+                <code class="comment"># Configurar SSH seguro</code>
+                <code class="comment"># Editar /etc/ssh/sshd_config</code>
+                <code class="comment"># Luego reiniciar: sudo systemctl restart ssh</code>
+
+                <br><code class="comment"># Líneas importantes en sshd_config:</code>
+                <code>PermitRootLogin no</code>
+                <code class="comment"># Deshabilitar login root</code>
+
+                <code>PasswordAuthentication no</code>
+                <code class="comment"># Usar solo claves SSH</code>
+
+                <code>Port 2222</code>
+                <code class="comment"># Cambiar puerto por defecto</code>
+
+                <br><code class="comment"># Instalar fail2ban</code>
+                <code>sudo apt install fail2ban</code>
+
+                <code>sudo systemctl enable fail2ban</code>
+
+                <code>sudo systemctl start fail2ban</code>
+
+                <br><code class="comment"># Ver logs de seguridad</code>
+                <code>sudo tail -f /var/log/auth.log</code>
+            </div>
+
+            <div class="info-box">
+                <p><strong>AppArmor:</strong> Control de acceso obligatorio. Ver estado: <code>sudo apparmor_status</code></p>
+            </div>
+        </section>
+
+        <!-- Sección 4.4 -->
+        <section class="section" id="backups">
+            <h3><i class="fas fa-save"></i> Copias de Seguridad</h3>
+
+            <div class="command-box">
+                <code class="comment"># Rsync - Sincronización eficiente</code>
+                <code>rsync -avh origen/ destino/</code>
+                <code class="comment"># a=archive, v=verbose, h=human readable</code>
+
+                <code>rsync -avh --delete origen/ destino/</code>
+                <code class="comment"># Eliminar en destino lo que no está en origen</code>
+
+                <code>rsync -avh -e ssh usuario@servidor:/ruta/ /backup/remoto/</code>
+                <code class="comment"># Backup remoto via SSH</code>
+
+                <br><code class="comment"># Tar - Archivado y compresión</code>
+                <code>tar -czvf backup.tar.gz /ruta/a/backupear</code>
+                <code class="comment"># Crear backup comprimido</code>
+
+                <code>tar -xzvf backup.tar.gz</code>
+                <code class="comment"># Extraer backup</code>
+
+                <code>tar -tzvf backup.tar.gz</code>
+                <code class="comment"># Ver contenido sin extraer</code>
+
+                <br><code class="comment"># Backup incremental con tar</code>
+                <code>tar -g snapshot.snar -czvf backup_full.tar.gz /data</code>
+
+                <code>tar -g snapshot.snar -czvf backup_inc1.tar.gz /data</code>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Regla 3-2-1 de backups:</strong> 3 copias, en 2 medios diferentes, 1 fuera del sitio.</p>
+            </div>
+        </section>
+
+        <!-- Sección 4.5 -->
+        <section class="section" id="herramientas-desarrollo">
+            <h3><i class="fas fa-tools"></i> Herramientas de Desarrollo</h3>
+
+            <div class="command-box">
+                <code class="comment"># Instalar lenguajes de programación</code>
+                <code>sudo apt install python3 python3-pip</code>
+                <code class="comment"># Python</code>
+
+                <code>sudo apt install nodejs npm</code>
+                <code class="comment"># Node.js</code>
+
+                <code>sudo apt install default-jdk</code>
+                <code class="comment"># Java</code>
+
+                <code>sudo apt install build-essential</code>
+                <code class="comment"># C/C++ (gcc, g++, make, etc.)</code>
+
+                <br><code class="comment"># Entornos de desarrollo</code>
+                <code>sudo snap install code --classic</code>
+                <code class="comment"># VS Code</code>
+
+                <code>sudo apt install git</code>
+                <code class="comment"># Git</code>
+
+                <br><code class="comment"># Configurar Git</code>
+                <code>git config --global user.name "Tu Nombre"</code>
+
+                <code>git config --global user.email "tu@email.com"</code>
+            </div>
+        </section>
+
+        <!-- Sección 4.6 -->
+        <section class="section" id="practica-red">
+            <h3><i class="fas fa-server"></i> Práctica: Configurar Servidor Web Seguro</h3>
+
+            <div class="command-box">
+                <code class="comment"># 1. Instalar Nginx</code>
+                <code>sudo apt update</code>
+                <code>sudo apt install nginx</code>
+
+                <code class="comment"># 2. Verificar instalación</code>
+                <code>sudo systemctl status nginx</code>
+
+                <code class="comment"># 3. Configurar firewall para Nginx</code>
+                <code>sudo ufw allow 'Nginx Full'</code>
+                <code class="comment"># Permite HTTP (80) y HTTPS (443)</code>
+
+                <code class="comment"># 4. Instalar certificado SSL con Let's Encrypt</code>
+                <code>sudo apt install certbot python3-certbot-nginx</code>
+
+                <code>sudo certbot --nginx -d tudominio.com -d www.tudominio.com</code>
+
+                <code class="comment"># 5. Configurar auto-renovación de certificados</code>
+                <code>sudo certbot renew --dry-run</code>
+
+                <code class="comment"># 6. Crear script de backup del sitio</code>
+                <code>#!/bin/bash</code>
+                <code class="comment"># backup_sitio.sh</code>
+                <code>FECHA=$(date +%Y%m%d_%H%M%S)</code>
+                <code>BACKUP_DIR="/backup/sitio_web"</code>
+                <code>SITIO_DIR="/var/www/html"</code>
+                <code>CONFIG_DIR="/etc/nginx"</code>
+                <br>
+                <code class="comment"># Crear backup</code>
+                <code>tar -czf "$BACKUP_DIR/sitio_$FECHA.tar.gz" "$SITIO_DIR" "$CONFIG_DIR"</code>
+                <br>
+                <code class="comment"># Mantener solo últimos 7 backups</code>
+                <code>find "$BACKUP_DIR" -name "*.tar.gz" -mtime +7 -delete</code>
+                <br>
+                <code>echo "Backup completado: $BACKUP_DIR/sitio_$FECHA.tar.gz"</code>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Para probar:</strong> Abre tu navegador y visita <code>http://localhost</code> o la IP de tu servidor.</p>
+            </div>
+        </section>
+
+        <!-- Navegación entre módulos -->
+        <div class="navigation-buttons">
+            <a href="modulo3.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Módulo 3: Administración</a>
+            <a href="modulo5.html" class="nav-btn next">Módulo 5: Programación <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4><i class="fab fa-linux"></i> Linux desde Cero</h4>
+                <p>Módulo 4: Redes y Seguridad</p>
+            </div>
+            <div class="footer-section">
+                <h4>Comandos Clave</h4>
+                <ul>
+                    <li><code>ip addr show</code> - Configuración de red</li>
+                    <li><code>sudo ufw allow ssh</code> - Firewall UFW</li>
+                    <li><code>rsync -avh</code> - Copias de seguridad</li>
+                    <li><code>tar -czvf</code> - Archivado comprimido</li>
+                    <li><code>sudo apt install nginx</code> - Servidor web</li>
+                    <li><code>sudo certbot --nginx</code> - Certificados SSL</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Siguiente Módulo</h4>
+                <p><a href="modulo5.html">Módulo 5: Programación y Scripts</a></p>
+                <p>Aprende shell scripting, control de flujo, funciones y buenas prácticas de programación.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Curso Linux desde Cero - Módulo 4</p>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Smooth scrolling para enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if(targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if(targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

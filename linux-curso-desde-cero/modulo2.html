@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Sistema de Archivos | Curso Linux</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fab fa-linux"></i>
+            <h1>Linux desde Cero</h1>
+        </div>
+        <nav class="navbar">
+            <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="modulo1.html"><i class="fas fa-laptop-code"></i> Módulo 1</a>
+            <a href="modulo2.html" class="active"><i class="fas fa-folder-open"></i> Módulo 2</a>
+            <a href="modulo3.html"><i class="fas fa-cogs"></i> Módulo 3</a>
+        </nav>
+    </header>
+
+    <!-- Módulo 2 Content -->
+    <main class="module-content">
+        <div class="module-header">
+            <a href="index.html" class="back-to-index"><i class="fas fa-arrow-left"></i> Volver al índice</a>
+            <h1 class="module-title"><i class="fas fa-folder-open"></i> Módulo 2: Sistema de Archivos</h1>
+            <p class="module-subtitle">Manejo de archivos, permisos, enlaces y búsquedas</p>
+        </div>
+
+        <!-- Sección 2.1 -->
+        <section class="section" id="archivos-directorios">
+            <h3><i class="fas fa-folder"></i> Archivos y Directorios</h3>
+
+            <p>En Linux, todo es un archivo: dispositivos, directorios, enlaces, etc.</p>
+
+            <div class="info-box">
+                <p><strong>Tipos de archivos:</strong></p>
+                <ul>
+                    <li><code>-</code> Archivo regular (texto o binario)</li>
+                    <li><code>d</code> Directorio</li>
+                    <li><code>l</code> Enlace simbólico</li>
+                    <li><code>c</code> Dispositivo de caracteres</li>
+                    <li><code>b</code> Dispositivo de bloques</li>
+                </ul>
+            </div>
+
+            <div class="command-box">
+                <code># Ver tipo de archivo</code>
+                <code>file archivo.txt</code>
+                <code class="comment"># Muestra tipo: ASCII text, executable, etc.</code>
+
+                <br><code class="comment"># Información detallada</code>
+                <code>stat archivo.txt</code>
+                <code class="comment"># Muestra: inodo, permisos, tamaño, fechas</code>
+            </div>
+        </section>
+
+        <!-- Sección 2.2 -->
+        <section class="section" id="editores-terminal">
+            <h3><i class="fas fa-edit"></i> Editores desde Terminal</h3>
+
+            <h4>Nano (Recomendado para principiantes):</h4>
+            <div class="command-box">
+                <code># Abrir archivo con nano</code>
+                <code>nano archivo.txt</code>
+                <code class="comment"># Atajos principales:</code>
+                <code class="comment"># Ctrl+O: Guardar (Write Out)</code>
+                <code class="comment"># Ctrl+X: Salir</code>
+                <code class="comment"># Ctrl+G: Ayuda</code>
+                <code class="comment"># Ctrl+W: Buscar</code>
+            </div>
+
+            <h4>Vim (Para usuarios avanzados):</h4>
+            <div class="command-box">
+                <code># Abrir archivo con vim</code>
+                <code>vim archivo.txt</code>
+                <code class="comment"># Modos:</code>
+                <code class="comment"># i: Insertar texto</code>
+                <code class="comment"># ESC: Volver a modo normal</code>
+                <code class="comment"># :wq: Guardar y salir</code>
+                <code class="comment"># :q!: Salir sin guardar</code>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Para ver contenido sin editar:</strong> Usa <code>cat</code>, <code>less</code>, <code>head</code>, <code>tail</code></p>
+            </div>
+        </section>
+
+        <!-- Sección 2.3 -->
+        <section class="section" id="permisos">
+            <h3><i class="fas fa-shield-alt"></i> Permisos y Propiedad</h3>
+
+            <p>Linux usa un sistema de permisos basado en tres categorías:</p>
+
+            <div class="command-box">
+                <code class="comment"># Ejemplo de permisos: -rwxr-xr--</code>
+                <code class="comment"># Posición 1: Tipo de archivo (- = archivo regular)</code>
+                <code class="comment"># Posiciones 2-4: Permisos del usuario (rwx = leer, escribir, ejecutar)</code>
+                <code class="comment"># Posiciones 5-7: Permisos del grupo (r-x = leer, ejecutar)</code>
+                <code class="comment"># Posiciones 8-10: Permisos de otros (r-- = solo leer)</code>
+            </div>
+
+            <h4>Cambiar permisos (chmod):</h4>
+            <div class="command-box">
+                <code class="comment"># Modo numérico (octal)</code>
+                <code>chmod 755 script.sh</code>
+                <code class="comment"># 7 = rwx (usuario), 5 = r-x (grupo), 5 = r-x (otros)</code>
+                <code>chmod 644 config.txt</code>
+                <code class="comment"># Solo dueño puede escribir</code>
+
+                <br><code class="comment"># Modo simbólico</code>
+                <code>chmod u+x script.sh</code>
+                <code class="comment"># Añadir ejecución al usuario</code>
+                <code>chmod g-w archivo.txt</code>
+                <code class="comment"># Quitar escritura al grupo</code>
+                <code>chmod o=r archivo.txt</code>
+                <code class="comment"># Otros solo lectura</code>
+            </div>
+
+            <h4>Cambiar propiedad (chown):</h4>
+            <div class="command-box">
+                <code>sudo chown usuario:grupo archivo.txt</code>
+                <code class="comment"># Cambiar usuario y grupo</code>
+                <code>sudo chown usuario archivo.txt</code>
+                <code class="comment"># Solo cambiar usuario</code>
+                <code>sudo chgrp grupo archivo.txt</code>
+                <code class="comment"># Solo cambiar grupo</code>
+            </div>
+        </section>
+
+        <!-- Sección 2.4 -->
+        <section class="section" id="enlaces">
+            <h3><i class="fas fa-link"></i> Enlaces de Archivos</h3>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Característica</th>
+                        <th>Enlace Simbólico</th>
+                        <th>Enlace Duro</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>Crear</strong></td>
+                        <td><code>ln -s origen destino</code></td>
+                        <td><code>ln origen destino</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Inodo</strong></td>
+                        <td>Diferente al original</td>
+                        <td>Mismo que el original</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Si se borra original</strong></td>
+                        <td>Enlace roto</td>
+                        <td>Sigue funcionando</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Entre sistemas de archivos</strong></td>
+                        <td>Sí</td>
+                        <td>No</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="command-box">
+                <code class="comment"># Ejemplos prácticos</code>
+                <code>ln -s /var/log/syslog ~/syslog_link</code>
+                <code class="comment"># Enlace simbólico para acceso rápido</code>
+                <code>ln archivo.txt backup_hardlink.txt</code>
+                <code class="comment"># Enlace duro como backup</code>
+                <code>ls -i archivo.txt backup_hardlink.txt</code>
+                <code class="comment"># Mismo número de inodo para enlaces duros</code>
+            </div>
+        </section>
+
+        <!-- Sección 2.5 -->
+        <section class="section" id="busqueda">
+            <h3><i class="fas fa-search"></i> Búsqueda en la Terminal</h3>
+
+            <h4>Buscar por nombre (find):</h4>
+            <div class="command-box">
+                <code>find . -name "*.txt"</code>
+                <code class="comment"># Buscar archivos .txt en directorio actual</code>
+                <code>find /home -type f -name "*.jpg"</code>
+                <code class="comment"># Archivos .jpg en /home</code>
+                <code>find . -size +100M</code>
+                <code class="comment"># Archivos mayores a 100MB</code>
+                <code>find . -mtime -7</code>
+                <code class="comment"># Modificados en últimos 7 días</code>
+                <code>find . -user juan</code>
+                <code class="comment"># Archivos del usuario juan</code>
+            </div>
+
+            <h4>Buscar por contenido (grep):</h4>
+            <div class="command-box">
+                <code>grep "error" archivo.log</code>
+                <code class="comment"># Buscar "error" en archivo</code>
+                <code>grep -r "function" ./src/</code>
+                <code class="comment"># Buscar recursivamente en directorio</code>
+                <code>grep -i "ERROR" archivo.log</code>
+                <code class="comment"># Case insensitive</code>
+                <code>grep -n "texto" archivo.txt</code>
+                <code class="comment"># Mostrar número de línea</code>
+                <code>grep -A 3 -B 3 "error" log.txt</code>
+                <code class="comment"># Mostrar 3 líneas antes y después</code>
+            </div>
+        </section>
+
+        <!-- Sección 2.6 -->
+        <section class="section" id="practica">
+            <h3><i class="fas fa-tasks"></i> Práctica Guiada: Organizador de Archivos</h3>
+
+            <p>Crea un script que organice automáticamente tus descargas:</p>
+
+            <div class="command-box">
+                <code class="comment">#!/bin/bash</code>
+                <code class="comment"># organizador_descargas.sh</code>
+                <code class="comment"># -------------------------------------------------</code>
+                <code>DIR_DESCARGAS="$HOME/Downloads"</code>
+                <code>DIR_ORGANIZADO="$HOME/Documents/Organizado"</code>
+                <br>
+                <code class="comment"># Crear directorios por tipo</code>
+                <code>mkdir -p "$DIR_ORGANIZADO"/{Documentos,Imagenes,Musica,Videos,Comprimidos}</code>
+                <br>
+                <code class="comment"># Mover documentos</code>
+                <code>find "$DIR_DESCARGAS" -name "*.pdf" -exec mv {} "$DIR_ORGANIZADO/Documentos/" \;</code>
+                <code>find "$DIR_DESCARGAS" -name "*.doc" -o -name "*.docx" -exec mv {} "$DIR_ORGANIZADO/Documentos/" \;</code>
+                <br>
+                <code class="comment"># Mover imágenes</code>
+                <code>find "$DIR_DESCARGAS" \( -name "*.jpg" -o -name "*.png" -o -name "*.gif" \) \</code>
+                <code>  -exec mv {} "$DIR_ORGANIZADO/Imagenes/" \;</code>
+                <br>
+                <code class="comment"># Establecer permisos adecuados</code>
+                <code>chmod -R 755 "$DIR_ORGANIZADO"</code>
+                <br>
+                <code class="comment"># Crear enlace simbólico para acceso rápido</code>
+                <code>ln -s "$DIR_ORGANIZADO" "$HOME/Desktop/Organizado"</code>
+                <br>
+                <code>echo "Organización completada. Revisa $DIR_ORGANIZADO"</code>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Para ejecutar:</strong></p>
+                <code>chmod +x organizador_descargas.sh</code><br>
+                <code>./organizador_descargas.sh</code>
+            </div>
+        </section>
+
+        <!-- Navegación entre módulos -->
+        <div class="navigation-buttons">
+            <a href="modulo1.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Módulo 1: Introducción</a>
+            <a href="modulo3.html" class="nav-btn next">Módulo 3: Administración <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4><i class="fab fa-linux"></i> Linux desde Cero</h4>
+                <p>Módulo 2: Sistema de Archivos</p>
+            </div>
+            <div class="footer-section">
+                <h4>Comandos Clave</h4>
+                <ul>
+                    <li><code>ls -la</code> - Listar con detalles</li>
+                    <li><code>chmod</code> - Cambiar permisos</li>
+                    <li><code>chown</code> - Cambiar propiedad</li>
+                    <li><code>ln -s</code> - Enlace simbólico</li>
+                    <li><code>find</code> - Buscar archivos</li>
+                    <li><code>grep</code> - Buscar en contenido</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Siguiente Módulo</h4>
+                <p><a href="modulo3.html">Módulo 3: Administración del Sistema</a></p>
+                <p>Aprende a gestionar usuarios, procesos, servicios y automatización.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Curso Linux desde Cero - Módulo 2</p>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Smooth scrolling para enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if(targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if(targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

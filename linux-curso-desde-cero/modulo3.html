@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Administración del Sistema | Curso Linux</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fab fa-linux"></i>
+            <h1>Linux desde Cero</h1>
+        </div>
+        <nav class="navbar">
+            <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="modulo2.html"><i class="fas fa-folder-open"></i> Módulo 2</a>
+            <a href="modulo3.html" class="active"><i class="fas fa-cogs"></i> Módulo 3</a>
+            <a href="modulo4.html"><i class="fas fa-network-wired"></i> Módulo 4</a>
+        </nav>
+    </header>
+
+    <!-- Módulo 3 Content -->
+    <main class="module-content">
+        <div class="module-header">
+            <a href="index.html" class="back-to-index"><i class="fas fa-arrow-left"></i> Volver al índice</a>
+            <h1 class="module-title"><i class="fas fa-cogs"></i> Módulo 3: Administración del Sistema</h1>
+            <p class="module-subtitle">Automatización, gestión de usuarios, procesos y resolución de problemas</p>
+        </div>
+
+        <!-- Sección 3.1 -->
+        <section class="section" id="cron">
+            <h3><i class="fas fa-clock"></i> Automatización con Cron</h3>
+
+            <p>Cron es el programador de tareas de Linux que permite ejecutar comandos en momentos específicos.</p>
+
+            <div class="info-box">
+                <p><strong>Sintaxis de Cron:</strong> <code>* * * * * comando</code></p>
+                <p>│ │ │ │ │<br>│ │ │ │ └─ Día de la semana (0-7, 0 y 7 = domingo)<br>│ │ │ └─── Mes (1-12)<br>│ │ └───── Día del mes (1-31)<br>│ └─────── Hora (0-23)<br>└───────── Minuto (0-59)</p>
+            </div>
+
+            <div class="command-box">
+                <code class="comment"># Editar tareas cron del usuario actual</code>
+                <code>crontab -e</code>
+
+                <br><code class="comment"># Ejemplos de tareas programadas</code>
+                <code class="comment"># Ejecutar script cada día a las 2 AM</code>
+                <code>0 2 * * * /ruta/backup.sh</code>
+
+                <code class="comment"># Cada lunes a medianoche</code>
+                <code>0 0 * * 1 /ruta/limpieza.sh</code>
+
+                <code class="comment"># Cada 6 horas</code>
+                <code>0 */6 * * * /ruta/actualizar.sh</code>
+
+                <code class="comment"># Cada minuto (para pruebas)</code>
+                <code>* * * * * echo "Hola" >> /tmp/log.txt</code>
+
+                <br><code class="comment"># Ver tareas programadas</code>
+                <code>crontab -l</code>
+
+                <code class="comment"># Eliminar todas las tareas</code>
+                <code>crontab -r</code>
+            </div>
+        </section>
+
+        <!-- Sección 3.2 -->
+        <section class="section" id="conocer-entorno">
+            <h3><i class="fas fa-info-circle"></i> Conocer tu Entorno</h3>
+
+            <div class="command-box">
+                <code class="comment"># Información del sistema</code>
+                <code>uname -a</code>
+                <code class="comment"># Información del kernel</code>
+
+                <code>lsb_release -a</code>
+                <code class="comment"># Distribución y versión</code>
+
+                <code>cat /etc/os-release</code>
+                <code class="comment"># Información detallada del SO</code>
+
+                <br><code class="comment"># Hardware</code>
+                <code>lscpu</code>
+                <code class="comment"># Información de CPU</code>
+
+                <code>free -h</code>
+                <code class="comment"># Memoria disponible (formato legible)</code>
+
+                <code>lsblk</code>
+                <code class="comment"># Discos y particiones</code>
+
+                <code>df -h</code>
+                <code class="comment"># Espacio en discos</code>
+
+                <code>lshw -short</code>
+                <code class="comment"># Resumen de hardware</code>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Variables importantes:</strong> <code>$HOME</code> (directorio home), <code>$PATH</code> (rutas ejecutables), <code>$USER</code> (usuario actual)</p>
+            </div>
+        </section>
+
+        <!-- Sección 3.3 -->
+        <section class="section" id="gestion-software">
+            <h3><i class="fas fa-box-open"></i> Gestión de Software</h3>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Distribución</th>
+                        <th>Gestor</th>
+                        <th>Comandos principales</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>Ubuntu/Debian</strong></td>
+                        <td>APT</td>
+                        <td><code>apt install</code>, <code>apt remove</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fedora/RHEL</strong></td>
+                        <td>DNF/YUM</td>
+                        <td><code>dnf install</code>, <code>yum remove</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Arch/Manjaro</strong></td>
+                        <td>Pacman</td>
+                        <td><code>pacman -S</code>, <code>pacman -R</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Universal</strong></td>
+                        <td>Snap</td>
+                        <td><code>snap install</code>, <code>snap remove</code></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="command-box">
+                <code class="comment"># APT (Ubuntu/Debian)</code>
+                <code>sudo apt update</code>
+                <code class="comment"># Actualizar lista de paquetes</code>
+
+                <code>sudo apt upgrade</code>
+                <code class="comment"># Actualizar paquetes instalados</code>
+
+                <code>sudo apt install nombre-paquete</code>
+                <code class="comment"># Instalar paquete</code>
+
+                <code>sudo apt remove nombre-paquete</code>
+                <code class="comment"># Desinstalar paquete</code>
+
+                <code>apt search "texto"</code>
+                <code class="comment"># Buscar paquete</code>
+
+                <code>apt list --installed</code>
+                <code class="comment"># Listar paquetes instalados</code>
+            </div>
+        </section>
+
+        <!-- Sección 3.4 -->
+        <section class="section" id="usuarios-grupos">
+            <h3><i class="fas fa-users"></i> Gestión de Usuarios y Grupos</h3>
+
+            <div class="command-box">
+                <code class="comment"># Crear usuario</code>
+                <code>sudo adduser nombre-usuario</code>
+                <code class="comment"># Interactivo (recomendado)</code>
+
+                <code>sudo useradd -m -s /bin/bash usuario</code>
+                <code class="comment"># No interactivo</code>
+
+                <br><code class="comment"># Información de usuarios</code>
+                <code>id nombre-usuario</code>
+                <code class="comment"># Información de usuario específico</code>
+
+                <code>whoami</code>
+                <code class="comment"># Usuario actual</code>
+
+                <code>w</code>
+                <code class="comment"># Usuarios conectados y qué hacen</code>
+
+                <br><code class="comment"># Gestión de contraseñas</code>
+                <code>sudo passwd nombre-usuario</code>
+                <code class="comment"># Cambiar contraseña (root)</code>
+
+                <code>passwd</code>
+                <code class="comment"># Cambiar propia contraseña</code>
+
+                <br><code class="comment"># Grupos</code>
+                <code>sudo addgroup nombre-grupo</code>
+                <code class="comment"># Crear grupo</code>
+
+                <code>sudo usermod -aG grupo usuario</code>
+                <code class="comment"># Añadir usuario a grupo</code>
+
+                <code>groups nombre-usuario</code>
+                <code class="comment"># Ver grupos de usuario</code>
+
+                <br><code class="comment"># Eliminar</code>
+                <code>sudo userdel -r nombre-usuario</code>
+                <code class="comment"># Eliminar usuario y su home</code>
+
+                <code>sudo groupdel nombre-grupo</code>
+                <code class="comment"># Eliminar grupo</code>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>Archivos importantes:</strong> <code>/etc/passwd</code> (usuarios), <code>/etc/shadow</code> (contraseñas), <code>/etc/group</code> (grupos), <code>/etc/sudoers</code> (permisos sudo)</p>
+            </div>
+        </section>
+
+        <!-- Sección 3.5 -->
+        <section class="section" id="procesos-servicios">
+            <h3><i class="fas fa-tasks"></i> Procesos y Servicios</h3>
+
+            <div class="command-box">
+                <code class="comment"># Ver procesos</code>
+                <code>ps aux</code>
+                <code class="comment"># Todos los procesos</code>
+
+                <code>ps -ef | grep nombre</code>
+                <code class="comment"># Buscar proceso específico</code>
+
+                <code>top</code>
+                <code class="comment"># Monitor interactivo (Ctrl+C para salir)</code>
+
+                <code>htop</code>
+                <code class="comment"># Mejorado (instalar: sudo apt install htop)</code>
+
+                <br><code class="comment"># Gestión de procesos</code>
+                <code>kill PID</code>
+                <code class="comment"># Terminar proceso amablemente</code>
+
+                <code>kill -9 PID</code>
+                <code class="comment"># Forzar terminación</code>
+
+                <code>killall nombre-proceso</code>
+                <code class="comment"># Terminar por nombre</code>
+
+                <code>pkill -f "patrón"</code>
+                <code class="comment"># Terminar por patrón</code>
+
+                <br><code class="comment"># Servicios (systemd)</code>
+                <code>systemctl status nombre-servicio</code>
+                <code class="comment"># Ver estado</code>
+
+                <code>sudo systemctl start nombre-servicio</code>
+                <code class="comment"># Iniciar</code>
+
+                <code>sudo systemctl stop nombre-servicio</code>
+                <code class="comment"># Detener</code>
+
+                <code>sudo systemctl restart nombre-servicio</code>
+                <code class="comment"># Reiniciar</code>
+
+                <code>sudo systemctl enable nombre-servicio</code>
+                <code class="comment"># Habilitar al inicio</code>
+
+                <code>sudo systemctl disable nombre-servicio</code>
+                <code class="comment"># Deshabilitar al inicio</code>
+
+                <code>systemctl list-units --type=service</code>
+                <code class="comment"># Listar todos los servicios</code>
+            </div>
+        </section>
+
+        <!-- Sección 3.6 -->
+        <section class="section" id="errores">
+            <h3><i class="fas fa-bug"></i> Revisión de Errores</h3>
+
+            <div class="command-box">
+                <code class="comment"># Logs del kernel</code>
+                <code>dmesg</code>
+                <code class="comment"># Mensajes del kernel</code>
+
+                <code>dmesg | grep -i error</code>
+                <code class="comment"># Filtrar errores</code>
+
+                <code>dmesg -T</code>
+                <code class="comment"># Con timestamps legibles</code>
+
+                <br><code class="comment"># Systemd logs</code>
+                <code>journalctl</code>
+                <code class="comment"># Todos los logs</code>
+
+                <code>journalctl -f</code>
+                <code class="comment"># Seguir logs en tiempo real</code>
+
+                <code>journalctl -u nombre-servicio</code>
+                <code class="comment"># Logs de servicio específico</code>
+
+                <code>journalctl --since "2026-01-01" --until "2026-01-02"</code>
+                <code class="comment"># Logs por fecha</code>
+
+                <code>journalctl -p err</code>
+                <code class="comment"># Solo errores</code>
+
+                <br><code class="comment"># Archivos de log importantes</code>
+                <code>tail -f /var/log/syslog</code>
+                <code class="comment"># Logs generales (seguir en tiempo real)</code>
+
+                <code>cat /var/log/auth.log</code>
+                <code class="comment"># Autenticación y seguridad</code>
+
+                <code>less /var/log/kern.log</code>
+                <code class="comment"># Logs del kernel</code>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Buenas prácticas:</strong> Revisar logs regularmente, configurar alertas para errores críticos, documentar soluciones a problemas recurrentes.</p>
+            </div>
+        </section>
+
+        <!-- Sección 3.7 -->
+        <section class="section" id="practica">
+            <h3><i class="fas fa-tasks"></i> Práctica Guiada: Sistema de Monitoreo</h3>
+
+            <p>Crea un script que monitoree tu sistema y envíe alertas:</p>
+
+            <div class="command-box">
+                <code class="comment">#!/bin/bash</code>
+                <code class="comment"># monitor_sistema.sh</code>
+                <code class="comment"># -------------------------------------------------</code>
+                <code>LOG_FILE="/var/log/monitor_sistema.log"</code>
+                <code>UMBRAL_CPU=80</code>
+                <code>UMBRAL_MEMORIA=90</code>
+                <code>UMBRAL_DISCO=85</code>
+                <br>
+                <code class="comment"># Función para loggear</code>
+                <code>loggear() {</code>
+                <code>    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"</code>
+                <code>}</code>
+                <br>
+                <code class="comment"># Monitorear CPU</code>
+                <code>USO_CPU=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d'%' -f1)</code>
+                <code>if (( $(echo "$USO_CPU > $UMBRAL_CPU" | bc -l) )); then</code>
+                <code>    loggear "ALERTA: Uso de CPU alto: ${USO_CPU}%"</code>
+                <code>fi</code>
+                <br>
+                <code class="comment"># Monitorear Memoria</code>
+                <code>USO_MEMORIA=$(free | grep Mem | awk '{print $3/$2 * 100.0}' | cut -d'.' -f1)</code>
+                <code>if [ "$USO_MEMORIA" -gt "$UMBRAL_MEMORIA" ]; then</code>
+                <code>    loggear "ALERTA: Uso de memoria alto: ${USO_MEMORIA}%"</code>
+                <code>fi</code>
+                <br>
+                <code class="comment"># Monitorear Disco</code>
+                <code>USO_DISCO=$(df -h / | awk 'NR==2 {print $5}' | cut -d'%' -f1)</code>
+                <code>if [ "$USO_DISCO" -gt "$UMBRAL_DISCO" ]; then</code>
+                <code>    loggear "ALERTA: Uso de disco alto: ${USO_DISCO}%"</code>
+                <code>fi</code>
+                <br>
+                <code class="comment"># Monitorear servicios críticos</code>
+                <code>SERVICIOS=("ssh" "cron" "nginx")</code>
+                <code>for servicio in "${SERVICIOS[@]}"; do</code>
+                <code>    if ! systemctl is-active --quiet "$servicio"; then</code>
+                <code>        loggear "ALERTA: Servicio $servicio no está corriendo"</code>
+                <code>        sudo systemctl restart "$servicio"</code>
+                <code>        loggear "INFO: Servicio $servicio reiniciado"</code>
+                <code>    fi</code>
+                <code>done</code>
+                <br>
+                <code>loggear "Monitoreo completado sin alertas críticas"</code>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Para automatizar:</strong> Agrega esta línea a crontab para ejecutar cada 5 minutos:</p>
+                <code>*/5 * * * * /ruta/monitor_sistema.sh</code>
+            </div>
+        </section>
+
+        <!-- Navegación entre módulos -->
+        <div class="navigation-buttons">
+            <a href="modulo2.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Módulo 2: Sistema de Archivos</a>
+            <a href="modulo4.html" class="nav-btn next">Módulo 4: Redes y Seguridad <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4><i class="fab fa-linux"></i> Linux desde Cero</h4>
+                <p>Módulo 3: Administración del Sistema</p>
+            </div>
+            <div class="footer-section">
+                <h4>Comandos Clave</h4>
+                <ul>
+                    <li><code>crontab -e</code> - Programar tareas</li>
+                    <li><code>apt install</code> - Instalar software</li>
+                    <li><code>adduser</code> - Crear usuarios</li>
+                    <li><code>systemctl</code> - Gestionar servicios</li>
+                    <li><code>journalctl</code> - Ver logs</li>
+                    <li><code>ps aux</code> - Ver procesos</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Siguiente Módulo</h4>
+                <p><a href="modulo4.html">Módulo 4: Redes y Seguridad</a></p>
+                <p>Aprende configuración de red, firewalls, copias de seguridad y seguridad básica.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Curso Linux desde Cero - Módulo 3</p>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Smooth scrolling para enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if(targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if(targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

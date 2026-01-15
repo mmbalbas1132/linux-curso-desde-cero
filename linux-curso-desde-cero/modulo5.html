@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 5: Programación y Scripts | Curso Linux</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fab fa-linux"></i>
+            <h1>Linux desde Cero</h1>
+        </div>
+        <nav class="navbar">
+            <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="modulo4.html"><i class="fas fa-network-wired"></i> Módulo 4</a>
+            <a href="modulo5.html" class="active"><i class="fas fa-code"></i> Módulo 5</a>
+            <a href="#proyecto-final"><i class="fas fa-flag-checkered"></i> Proyecto</a>
+        </nav>
+    </header>
+
+    <!-- Módulo 5 Content -->
+    <main class="module-content">
+        <div class="module-header">
+            <a href="index.html" class="back-to-index"><i class="fas fa-arrow-left"></i> Volver al índice</a>
+            <h1 class="module-title"><i class="fas fa-code"></i> Módulo 5: Programación y Scripts</h1>
+            <p class="module-subtitle">Shell scripting, control de flujo, funciones y buenas prácticas</p>
+        </div>
+
+        <!-- Sección 5.1 -->
+        <section class="section" id="introduccion-scripts">
+            <h3><i class="fas fa-file-code"></i> Introducción a Shell Scripts</h3>
+
+            <div class="command-box">
+                <code class="comment">#!/bin/bash</code>
+                <code class="comment"># hola_mundo.sh - Mi primer script</code>
+                <code class="comment"># -------------------------------------------------</code>
+                <code>echo "¡Hola, mundo!"</code>
+                <code>echo "Fecha: $(date)"</code>
+                <code>echo "Usuario: $USER"</code>
+                <code>echo "Directorio actual: $(pwd)"</code>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Para ejecutar un script:</strong></p>
+                <code>chmod +x hola_mundo.sh</code><br>
+                <code>./hola_mundo.sh</code><br>
+                <code>bash hola_mundo.sh</code>
+            </div>
+
+            <div class="command-box">
+                <code class="comment"># Variables</code>
+                <code>NOMBRE="Juan"</code>
+                <code>EDAD=25</code>
+                <code>RESULTADO=$(ls -la)</code>
+                <code class="comment"># Guardar salida de comando</code>
+                <br>
+                <code>echo "Hola, $NOMBRE"</code>
+                <code class="comment"># Hola, Juan</code>
+                <code>echo "Tienes $EDAD años"</code>
+                <code class="comment"># Tienes 25 años</code>
+            </div>
+        </section>
+
+        <!-- Sección 5.2 -->
+        <section class="section" id="argumentos">
+            <h3><i class="fas fa-code-branch"></i> Argumentos y Control de Flujo</h3>
+
+            <div class="command-box">
+                <code class="comment"># Argumentos del script</code>
+                <code class="comment"># $0: Nombre del script</code>
+                <code class="comment"># $1, $2, ...: Argumentos</code>
+                <code class="comment"># $#: Número de argumentos</code>
+                <code class="comment"># $@: Todos los argumentos</code>
+                <code class="comment"># $?: Código de salida del último comando</code>
+                <br>
+                <code class="comment"># Ejemplo: procesador_argumentos.sh</code>
+                <code>#!/bin/bash</code>
+                <br>
+                <code>echo "Script: $0"</code>
+                <code>echo "Primer argumento: $1"</code>
+                <code>echo "Segundo argumento: $2"</code>
+                <code>echo "Total argumentos: $#"</code>
+                <code>echo "Todos: $@"</code>
+            </div>
+
+            <div class="command-box">
+                <code class="comment"># Condicionales if/else</code>
+                <code>if [ $# -eq 0 ]; then</code>
+                <code>    echo "Error: No hay argumentos"</code>
+                <code>    exit 1</code>
+                <code>elif [ $1 = "start" ]; then</code>
+                <code>    echo "Iniciando..."</code>
+                <code>elif [ $1 = "stop" ]; then</code>
+                <code>    echo "Deteniendo..."</code>
+                <code>else</code>
+                <code>    echo "Comando no reconocido"</code>
+                <code>fi</code>
+            </div>
+        </section>
+
+        <!-- Sección 5.3 -->
+        <section class="section" id="bucles">
+            <h3><i class="fas fa-redo"></i> Bucles y Arrays</h3>
+
+            <div class="command-box">
+                <code class="comment"># Bucle for</code>
+                <code>for i in 1 2 3 4 5; do</code>
+                <code>    echo "Número: $i"</code>
+                <code>done</code>
+                <br>
+                <code>for i in {1..10}; do</code>
+                <code>    echo "Número: $i"</code>
+                <code>done</code>
+                <br>
+                <code>for archivo in *.txt; do</code>
+                <code>    echo "Procesando: $archivo"</code>
+                <code>done</code>
+                <br>
+                <code class="comment"># Bucle while</code>
+                <code>contador=1</code>
+                <code>while [ $contador -le 5 ]; do</code>
+                <code>    echo "Contador: $contador"</code>
+                <code>    contador=$((contador + 1))</code>
+                <code>done</code>
+            </div>
+
+            <div class="command-box">
+                <code class="comment"># Arrays</code>
+                <code>frutas=("manzana" "pera" "naranja")</code>
+                <code>echo "Primera fruta: ${frutas[0]}"</code>
+                <code class="comment"># manzana</code>
+                <br>
+                <code class="comment"># Recorrer array</code>
+                <code>for fruta in "${frutas[@]}"; do</code>
+                <code>    echo "Fruta: $fruta"</code>
+                <code>done</code>
+                <br>
+                <code class="comment"># Arrays asociativos (bash 4+)</code>
+                <code>declare -A persona</code>
+                <code>persona[nombre]="Juan"</code>
+                <code>persona[edad]=25</code>
+                <code>echo "Nombre: ${persona[nombre]}"</code>
+            </div>
+        </section>
+
+        <!-- Sección 5.4 -->
+        <section class="section" id="funciones">
+            <h3><i class="fas fa-cube"></i> Funciones y Depuración</h3>
+
+            <div class="command-box">
+                <code class="comment"># Definir función</code>
+                <code>saludar() {</code>
+                <code>    local nombre=$1</code>
+                <code>    echo "¡Hola, $nombre!"</code>
+                <code>    return 0</code>
+                <code>}</code>
+                <br>
+                <code class="comment"># Llamar función</code>
+                <code>saludar "Juan"</code>
+                <code>saludar "María"</code>
+                <br>
+                <code class="comment"># Función con valor de retorno</code>
+                <code>sumar() {</code>
+                <code>    local resultado=$(( $1 + $2 ))</code>
+                <code>    echo $resultado</code>
+                <code>}</code>
+                <br>
+                <code>total=$(sumar 5 3)</code>
+                <code>echo "Total: $total"</code>
+                <code class="comment"># Total: 8</code>
+            </div>
+
+            <div class="command-box">
+                <code class="comment"># Depuración de scripts</code>
+                <code class="comment"># Ejecutar con opciones de depuración:</code>
+                <code>bash -x script.sh</code>
+                <code class="comment"># Muestra cada comando antes de ejecutar</code>
+                <br>
+                <code class="comment"># O dentro del script:</code>
+                <code>set -e</code>
+                <code class="comment"># Termina en el primer error</code>
+                <code>set -u</code>
+                <code class="comment"># Error si usa variable no definida</code>
+                <code>set -x</code>
+                <code class="comment"># Modo depuración</code>
+                <code>set -o pipefail</code>
+                <code class="comment"># Considera error si falla algún comando en pipeline</code>
+            </div>
+        </section>
+
+        <!-- Sección 5.5 -->
+        <section class="section" id="entrada-salida">
+            <h3><i class="fas fa-exchange-alt"></i> Entrada/Salida y Procesamiento</h3>
+
+            <div class="command-box">
+                <code class="comment"># Leer entrada del usuario</code>
+                <code>read -p "Introduce tu nombre: " nombre</code>
+                <code>echo "Hola, $nombre"</code>
+                <br>
+                <code class="comment"># Contraseña (sin eco)</code>
+                <code>read -s -p "Contraseña: " password</code>
+                <code>echo</code>
+                <br>
+                <code class="comment"># Redirección de entrada/salida</code>
+                <code>comando > archivo.txt</code>
+                <code class="comment"># Sobrescribir</code>
+                <code>comando >> archivo.txt</code>
+                <code class="comment"># Añadir al final</code>
+                <code>comando 2> errores.log</code>
+                <code class="comment"># Solo errores</code>
+                <code>comando &> todo.log</code>
+                <code class="comment"># Salida y errores</code>
+            </div>
+
+            <div class="command-box">
+                <code class="comment"># Procesamiento de texto</code>
+                <code class="comment"># cut - extraer columnas</code>
+                <code>echo "uno:dos:tres" | cut -d: -f2</code>
+                <code class="comment"># dos</code>
+                <br>
+                <code class="comment"># sed - editor de flujo</code>
+                <code>echo "hola mundo" | sed 's/mundo/linux/'</code>
+                <code class="comment"># hola linux</code>
+                <br>
+                <code class="comment"># awk - procesamiento avanzado</code>
+                <code>awk '{print $1}' archivo.txt</code>
+                <code class="comment"># Primera columna</code>
+                <code>awk -F: '{print $1}' /etc/passwd</code>
+                <code class="comment"># Nombres de usuario</code>
+            </div>
+        </section>
+
+        <!-- Sección 5.6 -->
+        <section class="section" id="buenas-practicas">
+            <h3><i class="fas fa-check-circle"></i> Buenas Prácticas</h3>
+
+            <div class="info-box">
+                <p><strong>Consejos para scripts profesionales:</strong></p>
+                <ol>
+                    <li>Usar <code>#!/usr/bin/env bash</code> en lugar de <code>#!/bin/bash</code></li>
+                    <li>Configurar opciones seguras: <code>set -euo pipefail</code></li>
+                    <li>Validar argumentos y entradas</li>
+                    <li>Usar variables en mayúsculas para constantes</li>
+                    <li>Documentar con comentarios claros</li>
+                    <li>Manejar errores adecuadamente</li>
+                    <li>Implementar logging</li>
+                </ol>
+            </div>
+
+            <div class="command-box">
+                <code class="comment"># Ejemplo de script bien estructurado</code>
+                <code>#!/usr/bin/env bash</code>
+                <code class="comment"># ================================================</code>
+                <code class="comment"># backup_sistema.sh - Script de backup profesional</code>
+                <code class="comment"># Autor: Tu Nombre</code>
+                <code class="comment"># Versión: 1.0</code>
+                <code class="comment"># ================================================</code>
+                <br>
+                <code class="comment"># Configuración</code>
+                <code>set -euo pipefail</code>
+                <code>IFS=$'\n\t'</code>
+                <br>
+                <code>readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"</code>
+                <code>readonly LOG_FILE="/var/log/backup_sistema.log"</code>
+                <code>readonly BACKUP_DIR="/backup"</code>
+                <br>
+                <code class="comment"># Funciones</code>
+                <code>log() {</code>
+                <code>    local level="$1"</code>
+                <code>    local message="$2"</code>
+                <code>    echo "[$(date '+%Y-%m-%d %H:%M:%S')] [$level] $message" | tee -a "$LOG_FILE"</code>
+                <code>}</code>
+                <br>
+                <code>error_handler() {</code>
+                <code>    log "ERROR" "Fallo en línea $LINENO"</code>
+                <code>    exit 1</code>
+                <code>}</code>
+                <br>
+                <code>trap 'error_handler' ERR</code>
+                <br>
+                <code class="comment"># Main</code>
+                <code>main() {</code>
+                <code>    log "INFO" "Iniciando backup"</code>
+                <code>    </code>
+                <code>    # Código principal aquí</code>
+                <code>    </code>
+                <code>    log "INFO" "Backup completado"</code>
+                <code>}</code>
+                <br>
+                <code class="comment"># Ejecutar solo si es llamado directamente</code>
+                <code>if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then</code>
+                <code>    main "$@"</code>
+                <code>fi</code>
+            </div>
+        </section>
+
+        <!-- Sección 5.7 -->
+        <section class="section" id="proyecto-final">
+            <h3><i class="fas fa-flag-checkered"></i> Proyecto Final: Sistema Automatizado</h3>
+
+            <p>Crea un sistema completo de gestión automatizada:</p>
+
+            <div class="command-box">
+                <code class="comment">#!/bin/bash</code>
+                <code class="comment"># gestion_sistema.sh - Sistema completo de administración</code>
+                <code class="comment"># ==========================================================</code>
+                <br>
+                <code>set -euo pipefail</code>
+                <code>IFS=$'\n\t'</code>
+                <br>
+                <code class="comment"># Configuración</code>
+                <code>readonly LOG_FILE="/var/log/gestion_sistema.log"</code>
+                <code>readonly BACKUP_DIR="/backup"</code>
+                <code>readonly MONITOR_DIR="/monitor"</code>
+                <br>
+                <code class="comment"># Colores para output</code>
+                <code>RED='\033[0;31m'</code>
+                <code>GREEN='\033[0;32m'</code>
+                <code>YELLOW='\033[1;33m'</code>
+                <code>NC='\033[0m'</code>
+                <code class="comment"># No Color</code>
+                <br>
+                <code class="comment"># Funciones principales</code>
+                <code>backup_sistema() {</code>
+                <code>    local fecha=$(date +%Y%m%d_%H%M%S)</code>
+                <code>    echo -e "${GREEN}[+]${NC} Iniciando backup del sistema..."</code>
+                <code>    </code>
+                <code>    # Backup de configuraciones</code>
+                <code>    tar -czf "$BACKUP_DIR/etc_$fecha.tar.gz" /etc 2>/dev/null || true</code>
+                <code>    </code>
+                <code>    # Backup de logs importantes</code>
+                <code>    tar -czf "$BACKUP_DIR/logs_$fecha.tar.gz" /var/log 2>/dev/null || true</code>
+                <code>    </code>
+                <code>    echo -e "${GREEN}[+]${NC} Backup completado: $BACKUP_DIR"</code>
+                <code>}</code>
+                <br>
+                <code>monitor_recursos() {</code>
+                <code>    echo -e "${YELLOW}[*]${NC} Monitoreando recursos del sistema..."</code>
+                <code>    </code>
+                <code>    # CPU</code>
+                <code>    local cpu_uso=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}')</code>
+                <code>    echo "CPU: ${cpu_uso}% usado" > "$MONITOR_DIR/recursos.txt"</code>
+                <code>    </code>
+                <code>    # Memoria</code>
+                <code>    local mem_libre=$(free -m | awk 'NR==2{printf "%.2f%%", $4*100/$2}')</code>
+                <code>    echo "Memoria libre: $mem_libre" >> "$MONITOR_DIR/recursos.txt"</code>
+                <code>    </code>
+                <code>    # Disco</code>
+                <code>    local disco_uso=$(df -h / | awk 'NR==2 {print $5}')</code>
+                <code>    echo "Disco usado: $disco_uso" >> "$MONITOR_DIR/recursos.txt"</code>
+                <code>}</code>
+                <br>
+                <code>limpiar_sistema() {</code>
+                <code>    echo -e "${YELLOW}[*]${NC} Limpiando sistema..."</code>
+                <code>    </code>
+                <code>    # Limpiar caché de paquetes</code>
+                <code>    sudo apt autoclean -y 2>/dev/null || true</code>
+                <code>    sudo apt autoremove -y 2>/dev/null || true</code>
+                <code>    </code>
+                <code>    # Limpiar temporales</code>
+                <code>    find /tmp -type f -atime +7 -delete 2>/dev/null || true</code>
+                <code>    find /var/tmp -type f -atime +7 -delete 2>/dev/null || true</code>
+                <code>    </code>
+                <code>    echo -e "${GREEN}[+]${NC} Limpieza completada"</code>
+                <code>}</code>
+                <br>
+                <code>generar_reporte() {</code>
+                <code>    local fecha=$(date '+%Y-%m-%d %H:%M:%S')</code>
+                <code>    local reporte="/tmp/reporte_sistema_$(date +%Y%m%d).txt"</code>
+                <code>    </code>
+                <code>    echo "=== REPORTE DEL SISTEMA ===" > "$reporte"</code>
+                <code>    echo "Fecha: $fecha" >> "$reporte"</code>
+                <code>    echo "Hostname: $(hostname)" >> "$reporte"</code>
+                <code>    echo "Usuario: $(whoami)" >> "$reporte"</code>
+                <code>    echo "" >> "$reporte"</code>
+                <code>    echo "--- Estado del Sistema ---" >> "$reporte"</code>
+                <code>    uptime >> "$reporte"</code>
+                <code>    echo "" >> "$reporte"</code>
+                <code>    echo "--- Espacio en Disco ---" >> "$reporte"</code>
+                <code>    df -h >> "$reporte"</code>
+                <code>    echo "" >> "$reporte"</code>
+                <code>    echo "--- Memoria ---" >> "$reporte"</code>
+                <code>    free -h >> "$reporte"</code>
+                <code>    </code>
+                <code>    echo -e "${GREEN}[+]${NC} Reporte generado: $reporte"</code>
+                <code>}</code>
+                <br>
+                <code class="comment"># Menú principal</code>
+                <code>mostrar_menu() {</code>
+                <code>    clear</code>
+                <code>    echo "========================================"</code>
+                <code>    echo "    SISTEMA DE GESTIÓN LINUX"</code>
+                <code>    echo "========================================"</code>
+                <code>    echo "1. Backup del sistema"</code>
+                <code>    echo "2. Monitorear recursos"</code>
+                <code>    echo "3. Limpiar sistema"</code>
+                <code>    echo "4. Generar reporte"</code>
+                <code>    echo "5. Salir"</code>
+                <code>    echo "========================================"</code>
+                <code>}</code>
+                <br>
+                <code class="comment"># Función principal</code>
+                <code>main() {</code>
+                <code>    while true; do</code>
+                <code>        mostrar_menu</code>
+                <code>        read -p "Selecciona una opción [1-5]: " opcion</code>
+                <code>        </code>
+                <code>        case $opcion in</code>
+                <code>            1) backup_sistema ;;</code>
+                <code>            2) monitor_recursos ;;</code>
+                <code>            3) limpiar_sistema ;;</code>
+                <code>            4) generar_reporte ;;</code>
+                <code>            5) </code>
+                <code>                echo -e "${GREEN}[+]${NC} Saliendo del sistema..."</code>
+                <code>                exit 0</code>
+                <code>                ;;</code>
+                <code>            *) </code>
+                <code>                echo -e "${RED}[!]${NC} Opción no válida"</code>
+                <code>                sleep 2</code>
+                <code>                ;;</code>
+                <code>        esac</code>
+                <code>        </code>
+                <code>        read -p "Presiona Enter para continuar..."</code>
+                <code>    done</code>
+                <code>}</code>
+                <br>
+                <code class="comment"># Punto de entrada</code>
+                <code>if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then</code>
+                <code>    main "$@"</code>
+                <code>fi</code>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Instrucciones para el proyecto:</strong></p>
+                <ol>
+                    <li>Guarda el código como <code>gestion_sistema.sh</code></li>
+                    <li>Da permisos de ejecución: <code>chmod +x gestion_sistema.sh</code></li>
+                    <li>Crea los directorios necesarios: <code>sudo mkdir -p /backup /monitor</code></li>
+                    <li>Ejecuta: <code>sudo ./gestion_sistema.sh</code></li>
+                    <li>Prueba todas las funcionalidades</li>
+                    <li>Modifica y mejora según tus necesidades</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Conclusión -->
+        <section class="section" id="conclusion">
+            <h3><i class="fas fa-graduation-cap"></i> ¡Felicidades!</h3>
+
+            <div class="info-box">
+                <p>Has completado el curso completo de Linux desde Cero. Ahora tienes las habilidades para:</p>
+                <ul>
+                    <li>Administrar sistemas Linux eficientemente</li>
+                    <li>Automatizar tareas con scripts y cron</li>
+                    <li>Configurar redes y seguridad básica</li>
+                    <li>Crear y mantener copias de seguridad</li>
+                    <li>Desarrollar scripts profesionales</li>
+                    <li>Resolver problemas del sistema</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>Recuerda:</strong> La práctica constante es clave. Continúa experimentando, crea tus propios proyectos y únete a la comunidad de Linux para seguir aprendiendo.</p>
+            </div>
+        </section>
+
+        <!-- Navegación entre módulos -->
+        <div class="navigation-buttons">
+            <a href="modulo4.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Módulo 4: Redes y Seguridad</a>
+            <a href="index.html" class="nav-btn next">Volver al Inicio <i class="fas fa-home"></i></a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4><i class="fab fa-linux"></i> Linux desde Cero</h4>
+                <p>Módulo 5: Programación y Scripts</p>
+                <p>¡Curso Completado! 🎓</p>
+            </div>
+            <div class="footer-section">
+                <h4>Lo que has aprendido</h4>
+                <ul>
+                    <li>Scripting en Bash</li>
+                    <li>Control de flujo</li>
+                    <li>Funciones y arrays</li>
+                    <li>Procesamiento de texto</li>
+                    <li>Buenas prácticas</li>
+                    <li>Proyecto final integrador</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Próximos Pasos</h4>
+                <p>Continúa tu aprendizaje:</p>
+                <ul>
+                    <li><a href="https://linuxjourney.com" target="_blank">Linux Journey</a></li>
+                    <li><a href="https://overthewire.org/wargames/bandit/" target="_blank">Bandit Wargame</a></li>
+                    <li><a href="https://github.com" target="_blank">Proyectos en GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Curso Linux desde Cero - ¡Completado con éxito! 🎉</p>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Smooth scrolling para enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if(targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if(targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

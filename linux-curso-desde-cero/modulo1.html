@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Introducción a Linux | Curso Linux</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fab fa-linux"></i>
+            <h1>Linux desde Cero</h1>
+        </div>
+        <nav class="navbar">
+            <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="modulo1.html" class="active"><i class="fas fa-laptop-code"></i> Módulo 1</a>
+            <a href="modulo2.html"><i class="fas fa-folder-open"></i> Módulo 2</a>
+            <a href="modulo3.html"><i class="fas fa-cogs"></i> Módulo 3</a>
+        </nav>
+    </header>
+
+    <!-- Módulo 1 Content -->
+    <main class="module-content">
+        <div class="module-header">
+            <a href="index.html" class="back-to-index"><i class="fas fa-arrow-left"></i> Volver al índice</a>
+            <h1 class="module-title"><i class="fas fa-laptop-code"></i> Módulo 1: Introducción a Linux</h1>
+            <p class="module-subtitle">Conceptos básicos, instalación y primeros pasos</p>
+        </div>
+
+        <!-- Sección 1.1 -->
+        <section class="section">
+            <h3><i class="fas fa-question-circle"></i> ¿Qué es realmente Linux?</h3>
+
+            <div class="info-box">
+                <p><strong>Linux es un kernel</strong>, no un sistema operativo completo. Es el núcleo que gestiona los recursos del hardware.</p>
+            </div>
+
+            <p><strong>GNU/Linux</strong> es el sistema operativo completo que combina:</p>
+            <ul>
+                <li><strong>Kernel Linux</strong> - Núcleo del sistema</li>
+                <li><strong>Herramientas GNU</strong> - Utilidades y programas básicos</li>
+                <li><strong>Software adicional</strong> - Aplicaciones y entornos gráficos</li>
+            </ul>
+
+            <h4>Historia breve de Linux:</h4>
+            <ul>
+                <li><strong>Unix (1970)</strong> - Sistema original en el que se basan muchos sistemas modernos</li>
+                <li><strong>Minix</strong> - Versión educativa creada por Andrew Tanenbaum</li>
+                <li><strong>Linus Torvalds (1991)</strong> - Estudiante finlandés que creó el kernel Linux como proyecto personal</li>
+                <li><strong>Richard Stallman y GNU</strong> - Proyecto para crear software libre tipo Unix</li>
+            </ul>
+
+            <div class="command-box">
+                <code># Ver información del sistema</code>
+                <code>uname -a</code>
+                <code class="comment"># Muestra: Kernel version, nombre del sistema, etc.</code>
+            </div>
+        </section>
+
+        <!-- Sección 1.2 -->
+        <section class="section">
+            <h3><i class="fas fa-download"></i> Instalación de Ubuntu</h3>
+
+            <div class="warning-box">
+                <p><strong>Recomendación para principiantes:</strong> Usar <strong>máquina virtual</strong> con VirtualBox para practicar sin riesgo.</p>
+            </div>
+
+            <h4>Pasos de instalación:</h4>
+            <ol>
+                <li><strong>Descargar Ubuntu</strong> desde ubuntu.com/download/desktop</li>
+                <li><strong>Instalar VirtualBox</strong> desde virtualbox.org</li>
+                <li><strong>Crear máquina virtual</strong> con 4GB RAM y 25GB disco</li>
+                <li><strong>Seleccionar ISO</strong> de Ubuntu e iniciar instalación</li>
+                <li><strong>Seguir asistente</strong> de instalación gráfica</li>
+            </ol>
+
+            <div class="command-box">
+                <code># Comandos básicos post-instalación</code>
+                <code>sudo apt update</code>
+                <code class="comment"># Actualizar lista de paquetes</code>
+                <code>sudo apt upgrade</code>
+                <code class="comment"># Actualizar sistema</code>
+                <code>sudo apt install build-essential</code>
+                <code class="comment"># Instalar herramientas de desarrollo</code>
+            </div>
+        </section>
+
+        <!-- Sección 1.3 -->
+        <section class="section">
+            <h3><i class="fas fa-desktop"></i> Entornos de Escritorio</h3>
+
+            <p>Linux ofrece múltiples interfaces gráficas según tus necesidades:</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Entorno</th>
+                        <th>Características</th>
+                        <th>Recomendado para</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>GNOME</strong></td>
+                        <td>Moderno, minimalista, extensiones</td>
+                        <td>Usuarios nuevos, estética moderna</td>
+                    </tr>
+                    <tr>
+                        <td><strong>KDE Plasma</strong></td>
+                        <td>Altamente personalizable, similar a Windows</td>
+                        <td>Usuarios que vienen de Windows</td>
+                    </tr>
+                    <tr>
+                        <td><strong>XFCE</strong></td>
+                        <td>Ligero, rápido, eficiente</td>
+                        <td>Hardware antiguo, máximo rendimiento</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="command-box">
+                <code># Instalar KDE Plasma en Ubuntu</code>
+                <code>sudo apt install kde-plasma-desktop</code>
+                <code class="comment"># Elegir entorno en pantalla de login</code>
+            </div>
+        </section>
+
+        <!-- Sección 1.4 -->
+        <section class="section">
+            <h3><i class="fas fa-terminal"></i> Primeros Comandos en Terminal</h3>
+
+            <p>La terminal es tu herramienta más poderosa en Linux. Aquí los comandos esenciales:</p>
+
+            <div class="command-box">
+                <code class="comment"># NAVEGACIÓN</code>
+                <code>pwd</code>
+                <code class="comment"># Muestra directorio actual (Print Working Directory)</code>
+                <code>ls</code>
+                <code class="comment"># Lista archivos</code>
+                <code>ls -la</code>
+                <code class="comment"># Lista detallada con archivos ocultos</code>
+                <code>cd ~</code>
+                <code class="comment"># Ir al directorio home</code>
+                <code>cd ..</code>
+                <code class="comment"># Subir un nivel</code>
+
+                <br><code class="comment"># AYUDA</code>
+                <code>man ls</code>
+                <code class="comment"># Manual de comando ls</code>
+                <code>ls --help</code>
+                <code class="comment"># Ayuda rápida</code>
+                <code>apropos search</code>
+                <code class="comment"># Busca comandos relacionados</code>
+
+                <br><code class="comment"># GESTIÓN DE ARCHIVOS</code>
+                <code>touch archivo.txt</code>
+                <code class="comment"># Crea archivo vacío</code>
+                <code>mkdir directorio</code>
+                <code class="comment"># Crea directorio</code>
+                <code>cp origen destino</code>
+                <code class="comment"># Copia archivo</code>
+                <code>mv origen destino</code>
+                <code class="comment"># Mueve o renombra</code>
+                <code>rm archivo.txt</code>
+                <code class="comment"># Elimina archivo</code>
+            </div>
+
+            <div class="danger-box">
+                <p><strong>¡CUIDADO con rm -rf!</strong> Elimina recursivamente y forzadamente. Puede borrar todo tu sistema si se usa incorrectamente.</p>
+            </div>
+        </section>
+
+        <!-- Sección 1.5 -->
+        <section class="section">
+            <h3><i class="fas fa-hands-helping"></i> Práctica Guiada</h3>
+
+            <p>Crea tu primer proyecto organizado en Linux:</p>
+
+            <div class="command-box">
+                <code class="comment"># 1. Crear estructura de directorios</code>
+                <code>mkdir -p ~/proyecto/{src,bin,doc,backup}</code>
+
+                <code class="comment"># 2. Crear archivos de prueba</code>
+                <code>touch ~/proyecto/src/{main.sh,utils.sh,config.txt}</code>
+
+                <code class="comment"># 3. Ver estructura creada</code>
+                <code>tree ~/proyecto</code>
+                <code class="comment"># Si no tienes tree: sudo apt install tree</code>
+
+                <code class="comment"># 4. Crear backup simple</code>
+                <code>cp ~/proyecto/src/*.sh ~/proyecto/backup/</code>
+
+                <code class="comment"># 5. Verificar todo</code>
+                <code>ls -laR ~/proyecto/</code>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Consejo:</strong> Practica estos comandos diariamente hasta que sean naturales. La repetición es clave para memorizar.</p>
+            </div>
+        </section>
+
+        <!-- Navegación entre módulos -->
+        <div class="navigation-buttons">
+            <span></span> <!-- Espacio vacío para alinear a la derecha el siguiente botón -->
+            <a href="modulo2.html" class="nav-btn next">Módulo 2: Sistema de Archivos <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4><i class="fab fa-linux"></i> Linux desde Cero</h4>
+                <p>Módulo 1: Introducción a Linux</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contenido del Módulo</h4>
+                <ul>
+                    <li><a href="#qué-es-linux">¿Qué es Linux?</a></li>
+                    <li><a href="#instalacion">Instalación de Ubuntu</a></li>
+                    <li><a href="#escritorios">Entornos de escritorio</a></li>
+                    <li><a href="#comandos">Primeros comandos</a></li>
+                    <li><a href="#practica">Práctica guiada</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Siguiente Módulo</h4>
+                <p><a href="modulo2.html">Módulo 2: Sistema de Archivos</a></p>
+                <p>Aprende a manejar archivos, permisos, enlaces y búsquedas.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Curso Linux desde Cero - Módulo 1</p>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Smooth scrolling para enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if(targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if(targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>
